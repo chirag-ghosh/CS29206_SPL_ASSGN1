@@ -3,6 +3,7 @@
 typedef struct _llist {
     int length;
     NODE *head;
+    NODE *tail;
 } LLIST;
 
 LLIST createList();
