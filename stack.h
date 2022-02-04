@@ -1,7 +1,7 @@
 #include "llist.h"
 
 typedef struct _stack {
-    LLIST *head;
+    LLIST list;
 } STACK;
 
 STACK createStack();
