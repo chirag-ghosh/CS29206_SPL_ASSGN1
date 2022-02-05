@@ -90,4 +90,5 @@ LLIST deleteList(LLIST H, int k) {
         parentNode = tempNode;
         tempNode = tempNode->next;
     }
+    return H;
 }

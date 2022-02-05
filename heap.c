@@ -72,7 +72,6 @@ HEAP extractMin(HEAP H) {
         H.length--;
         return H;
     } else {
-        int value = H.array[0];
         H.array[0] = H.array[--(H.length)];
         return minHeapify(H, 0);
     }
