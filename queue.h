@@ -1,7 +1,7 @@
 #include "llist.h"
 
 typedef struct _queue {
-    LLIST *list;
+    LLIST list;
 } QUEUE;
 
 QUEUE createQueue();
