@@ -1,11 +1,16 @@
-typedef struct _nodeptr {
+typedef struct _node {
     int value;
     int rank;
-    struct _nodeptr* parent;
+    struct _node* parent;
+} NODE;
+
+typedef struct _nodeptr {
+    NODE* node;
 } NODE_PTR;
 
 typedef struct _unionfind {
-    int size;
+    int capacity;
+    int length;
     NODE_PTR* nodeArray;
 } UNION_FIND;
 
