@@ -1,6 +1,8 @@
+#define MAX_CAPACITY 100
+
 typedef struct _heap {
     int length;
-    int array[100];
+    int array[MAX_CAPACITY];
 } HEAP;
 
 HEAP createHeap();
