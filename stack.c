@@ -3,6 +3,7 @@
 STACK createStack() {
     STACK s;
     s.list = createList();
+    return s;
 }
 
 int isEmptyStack(STACK S) {
