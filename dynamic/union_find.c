@@ -1,4 +1,4 @@
-#include "union.h"
+#include "union_find.h"
 
 #include <stdio.h>
 #include <stdlib.h>
