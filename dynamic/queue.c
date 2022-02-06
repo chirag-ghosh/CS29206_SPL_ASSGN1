@@ -1,24 +1,25 @@
-#include <queue.h>
+#include "queue.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
 QUEUE createQueue() {
     QUEUE q;
-    q.list = createList();
+    q = createList();
     return q;
 }
 
 int isEmptyQueue(QUEUE Q) {
-    return (Q.list.length == 0);
+    return (Q.length == 0);
 }
 
 QUEUE enqueue(QUEUE Q, int k) {
-    Q.list = insertAtEnd(Q.list, k);
+    Q = insertAtEnd(Q, k);
     return Q;
 }
 
 QUEUE dequeue(QUEUE Q, int *k) {
     if (isEmptyQueue(Q)) return Q;
-    Q.list = deleteFromEnd(Q.list, k);
+    Q = deleteFromEnd(Q, k);
     return Q;
 }

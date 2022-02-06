@@ -1,8 +1,6 @@
-#include <llist.h>
+#include "llist.h"
 
-typedef struct _queue {
-    LLIST list;
-} QUEUE;
+typedef LLIST QUEUE;
 
 QUEUE createQueue();
 

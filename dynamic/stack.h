@@ -1,8 +1,6 @@
 #include <llist.h>
 
-typedef struct _stack {
-    LLIST list;
-} STACK;
+typedef LLIST STACK;
 
 STACK createStack();
 

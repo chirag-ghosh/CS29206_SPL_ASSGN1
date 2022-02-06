@@ -1,6 +1,7 @@
+#include "union.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <union.h>
 
 UNION_FIND createUF(int n) {
     UNION_FIND newUF;
