@@ -29,6 +29,7 @@ LLIST insertAtFront(LLIST H, int k) {
     newNode->value = k;
     newNode->next = H.head;
     H.head = newNode;
+    if (H.length == 0) H.tail = newNode;
     H.length += 1;
     return H;
 }

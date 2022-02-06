@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 GRAPH createGraph(int nodeCount, int edgeCount) {
-    GRAPH newGraph;
+    static GRAPH newGraph;
     newGraph.nodeCount = nodeCount;
     newGraph.edgeCount = edgeCount;
     newGraph.adjMatrix = (int **)malloc(nodeCount * sizeof(int *));
@@ -71,21 +71,17 @@ void BFS(GRAPH G) {
     for (int i = 0; i < G.nodeCount; i++) visited[i] = 0;
     QUEUE myQueue = createQueue();
 
-    printf("checkpoint 1\n");
     for (int i = 0; i < G.nodeCount; i++) {
         if (visited[i] == 1) continue;
 
-        printf("checkpoint i = %d\n", i);
         myQueue = enqueue(myQueue, i);
         visited[i] = 1;
-        printf("checkpoint i = %d\n", i);
         while (!isEmptyQueue(myQueue)) {
             int currentNode;
             myQueue = dequeue(myQueue, &currentNode);
-            printf("%d \n", currentNode);
+            printf("%d ", currentNode);
 
             for (int j = 0; j < G.nodeCount; j++) {
-                printf("%d %d\n", j, G.adjMatrix[currentNode][j]);
                 if (G.adjMatrix[currentNode][j] != 0 && visited[j] == 0) {
                     myQueue = enqueue(myQueue, j);
                     visited[j] = 1;
