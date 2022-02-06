@@ -137,20 +137,22 @@ void MST(GRAPH G) {
     mergesort(G.edgeList, G.edgeCount);
 
     UNION_FIND F = createUF(G.nodeCount);
+
     int *k = (int *)malloc(sizeof(int));
     for (int i = 0; i < G.nodeCount; i++) {
         F = makeSetUF(F, i, k);
     }
     free(k);
+
     int cost = 0;
-    printf("MST Edges:");
+    printf("MST Edges:\n");
+    printf("From\tTo\tWeight\n");
     for (int i = 0; i < G.edgeCount; i++) {
         if (findUF(F, G.edgeList[i].u).node != findUF(F, G.edgeList[i].v).node) {
             unionUF(F, G.edgeList[i].u, G.edgeList[i].v);
             cost += G.edgeList[i].weight;
-            printf("\n%d %d %d", G.edgeList[i].u, G.edgeList[i].v, G.edgeList[i].weight);
+            printf("%d\t%d\t%d\n", G.edgeList[i].u, G.edgeList[i].v, G.edgeList[i].weight);
         }
     }
-    printf("\nMST cost:\t");
-    printf("%d\n", cost);
+    printf("MST cost: %d\n", cost);
 }
