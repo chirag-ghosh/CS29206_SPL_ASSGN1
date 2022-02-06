@@ -11,4 +11,4 @@
 !Makefile
 
 .vscode
-.out
+*.out
