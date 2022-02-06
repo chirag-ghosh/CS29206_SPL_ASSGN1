@@ -1,6 +1,6 @@
 #include "graph.h"
 
-#include <basic/stack.h>
+#include <basic.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -58,6 +58,33 @@ void DFS(GRAPH G) {
             for (int j = 0; j < G.nodeCount; j++) {
                 if (G.adjMatrix[currentNode][j] != 0 && visited[j] == 0) {
                     myStack = push(myStack, j);
+                    visited[j] = 1;
+                }
+            }
+        }
+    }
+}
+
+void BFS(GRAPH G) {
+    int *visited;
+    visited = (int *)malloc(G.nodeCount * sizeof(int));
+    for (int i = 0; i < G.nodeCount; i++) visited[i] = 0;
+    QUEUE myQueue = createQueue();
+
+    for (int i = 0; i < G.nodeCount; i++) {
+        if (visited[i] == 1) continue;
+
+        myQueue = enqueue(myQueue, i);
+        visited[i] = 1;
+
+        while (!isEmptyQueue(myQueue)) {
+            int currentNode;
+            myQueue = dequeue(myQueue, &currentNode);
+            printf("%d ", currentNode);
+
+            for (int j = 0; j < G.nodeCount; j++) {
+                if (G.adjMatrix[currentNode][j] != 0 && visited[j] == 0) {
+                    myQueue = enqueue(myQueue, j);
                     visited[j] = 1;
                 }
             }
