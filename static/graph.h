@@ -1,9 +1,15 @@
-typedef struct _graph {
+typedef struct _edge {
+    int u;
+    int v;
+    int weight;
+} EDGE;
 
+typedef struct _graph {
     int nodeCount;
     int edgeCount;
     int **adjMatrix;
-}GRAPH;
+    EDGE *edgeList;
+} GRAPH;
 
 GRAPH readGraph(char *FName);
 

@@ -4,6 +4,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void mergesort(EDGE *edgeList, int n) {
+    EDGE *tempList;
+    int LS, LE, RS, RE, i, j, k;
+
+    if (n <= 1) return;
+
+    mergesort(edgeList, n / 2);
+    mergesort(edgeList + n / 2, n - n / 2);
+
+    /* Merging */
+    tempList = (EDGE *)malloc(n * sizeof(EDGE));
+
+    LS = 0;
+    LE = n / 2 - 1;
+    RS = LE + 1;
+    RE = n - 1;
+
+    i = LS;
+    j = RS;
+    k = 0;
+    while ((i <= LE) || (j <= RE)) {
+        if (i > LE)
+            tempList[k] = edgeList[j++];
+        else if (j > RE)
+            tempList[k] = edgeList[i++];
+        else if (edgeList[i].weight <= edgeList[j].weight)
+            tempList[k] = edgeList[i++];
+        else
+            tempList[k] = edgeList[j++];
+        ++k;
+    }
+    for (i = 0; i < n; ++i) edgeList[i] = tempList[i];
+    free(tempList);
+}
+
 GRAPH createGraph(int nodeCount, int edgeCount) {
     static GRAPH newGraph;
     newGraph.nodeCount = nodeCount;
@@ -15,6 +50,7 @@ GRAPH createGraph(int nodeCount, int edgeCount) {
             newGraph.adjMatrix[i][j] = 0;
         }
     }
+    newGraph.edgeList = (EDGE *)malloc(edgeCount * sizeof(EDGE));
     return newGraph;
 }
 
@@ -33,6 +69,12 @@ GRAPH readGraph(char *FName) {
         fscanf(filePointer, "%d %d %d", &u, &v, &weight);
         graph.adjMatrix[u][v] = weight;
         graph.adjMatrix[v][u] = weight;
+
+        EDGE newEdge;
+        newEdge.u = u;
+        newEdge.v = v;
+        newEdge.weight = weight;
+        graph.edgeList[i] = newEdge;
     }
 
     return graph;
@@ -91,13 +133,24 @@ void BFS(GRAPH G) {
     }
 }
 
-int main() {
-    GRAPH G = readGraph("testing.txt");
-    printf("DFS traversal is : ");
-    DFS(G);
-    printf("\n");
-    printf("BFS traversal is : ");
-    BFS(G);
-    printf("\n");
-    return 0;
+void MST(GRAPH G) {
+    mergesort(G.edgeList, G.edgeCount);
+
+    UNION_FIND F = createUF(G.nodeCount);
+    int *k = (int *)malloc(sizeof(int));
+    for (int i = 0; i < G.nodeCount; i++) {
+        F = makeSetUF(F, i, k);
+    }
+    free(k);
+    int cost = 0;
+    printf("MST Edges:");
+    for (int i = 0; i < G.edgeCount; i++) {
+        if (findUF(F, G.edgeList[i].u).node != findUF(F, G.edgeList[i].v).node) {
+            unionUF(F, G.edgeList[i].u, G.edgeList[i].v);
+            cost += G.edgeList[i].weight;
+            printf("\n%d %d %d", G.edgeList[i].u, G.edgeList[i].v, G.edgeList[i].weight);
+        }
+    }
+    printf("\nMST cost:\t");
+    printf("%d\n", cost);
 }
