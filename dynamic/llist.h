@@ -1,5 +1,3 @@
-#include "node.h"
-
 typedef struct _llist {
     int length;
     NODE *head;

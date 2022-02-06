@@ -1,5 +1,3 @@
-#include <llist.h>
-
 typedef LLIST STACK;
 
 STACK createStack();

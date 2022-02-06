@@ -1,3 +1,10 @@
+// import node here
+#include "node.h"
+
+// import llist here
+#include "llist.h"
+
+// import header
 #include "stack.h"
 
 STACK createStack() {

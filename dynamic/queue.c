@@ -1,5 +1,13 @@
+// import node here
+#include "node.h"
+
+// import llist here
+#include "llist.h"
+
+// import header
 #include "queue.h"
 
+// system
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -20,6 +28,6 @@ QUEUE enqueue(QUEUE Q, int k) {
 
 QUEUE dequeue(QUEUE Q, int *k) {
     if (isEmptyQueue(Q)) return Q;
-    Q = deleteFromEnd(Q, k);
+    Q = deleteFromFront(Q, k);
     return Q;
 }

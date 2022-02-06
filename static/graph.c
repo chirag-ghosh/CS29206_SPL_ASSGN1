@@ -71,18 +71,21 @@ void BFS(GRAPH G) {
     for (int i = 0; i < G.nodeCount; i++) visited[i] = 0;
     QUEUE myQueue = createQueue();
 
+    printf("checkpoint 1\n");
     for (int i = 0; i < G.nodeCount; i++) {
         if (visited[i] == 1) continue;
 
+        printf("checkpoint i = %d\n", i);
         myQueue = enqueue(myQueue, i);
         visited[i] = 1;
-
+        printf("checkpoint i = %d\n", i);
         while (!isEmptyQueue(myQueue)) {
             int currentNode;
             myQueue = dequeue(myQueue, &currentNode);
-            printf("%d ", currentNode);
+            printf("%d \n", currentNode);
 
             for (int j = 0; j < G.nodeCount; j++) {
+                printf("%d %d\n", j, G.adjMatrix[currentNode][j]);
                 if (G.adjMatrix[currentNode][j] != 0 && visited[j] == 0) {
                     myQueue = enqueue(myQueue, j);
                     visited[j] = 1;
@@ -96,6 +99,9 @@ int main() {
     GRAPH G = readGraph("testing.txt");
     printf("DFS traversal is : ");
     DFS(G);
+    printf("\n");
+    printf("BFS traversal is : ");
+    BFS(G);
     printf("\n");
     return 0;
 }

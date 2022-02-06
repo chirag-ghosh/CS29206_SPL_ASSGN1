@@ -1,5 +1,3 @@
-#include "llist.h"
-
 typedef LLIST QUEUE;
 
 QUEUE createQueue();

@@ -1,5 +1,9 @@
+// import node here
+#include "node.h"
+// import header
 #include "llist.h"
 
+// system
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -30,8 +34,10 @@ LLIST insertAtFront(LLIST H, int k) {
 }
 
 LLIST insertAtEnd(LLIST H, int k) {
+    if (H.length == 0) return insertAtFront(H, k);
     NODE* newNode = (NODE*)malloc(sizeof(NODE));
     newNode->value = k;
+    newNode->next = NULL;
     H.tail->next = newNode;
     H.tail = newNode;
     H.length += 1;
