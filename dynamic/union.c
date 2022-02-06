@@ -1,7 +1,6 @@
-#include "union.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <union.h>
 
 UNION_FIND createUF(int n) {
     UNION_FIND newUF;
@@ -13,7 +12,7 @@ UNION_FIND createUF(int n) {
 
 UNION_FIND makeSetUF(UNION_FIND F, int x, int *i) {
     NODE_PTR newNode;
-    newNode.node = (NODE *)malloc(sizeof(NODE));
+    newNode.node = (UNIONNODE *)malloc(sizeof(UNIONNODE));
     newNode.node->value = x;
     newNode.node->rank = 0;
     newNode.node->parent = newNode.node;

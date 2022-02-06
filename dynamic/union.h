@@ -1,11 +1,11 @@
-typedef struct _node {
+typedef struct _unionnode {
     int value;
     int rank;
-    struct _node* parent;
-} NODE;
+    struct _unionnode* parent;
+} UNIONNODE;
 
 typedef struct _nodeptr {
-    NODE* node;
+    UNIONNODE* node;
 } NODE_PTR;
 
 typedef struct _unionfind {
