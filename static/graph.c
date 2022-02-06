@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// standard mergesort function to sort edgelist in increasing order of weight
 void mergesort(EDGE *edgeList, int n) {
     EDGE *tempList;
     int LS, LE, RS, RE, i, j, k;
@@ -39,6 +40,7 @@ void mergesort(EDGE *edgeList, int n) {
     free(tempList);
 }
 
+// initialises an empty graph from node and edge count
 GRAPH createGraph(int nodeCount, int edgeCount) {
     static GRAPH newGraph;
     newGraph.nodeCount = nodeCount;

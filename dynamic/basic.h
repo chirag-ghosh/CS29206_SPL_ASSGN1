@@ -1,9 +1,9 @@
-#//primary dependency
+// primary dependency for others
 #include <basic/node.h>
 
-// secondary
+// main files
 #include <basic/heap.h>
 #include <basic/llist.h>
 #include <basic/queue.h>
 #include <basic/stack.h>
-#include <basic/union.h>
+#include <basic/union_find.h>

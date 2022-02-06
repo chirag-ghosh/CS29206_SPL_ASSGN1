@@ -2,18 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// helper function to get parent node index
 int getParent(int index) {
     return (index - 1) / 2;
 }
 
+// helper function to get left child node index
 int getLeftChild(int index) {
     return (2 * index + 1);
 }
 
+// helper function to get right child node index
 int getRightChild(int index) {
     return (2 * index + 2);
 }
 
+// helper function to swap position of two nodes
 void swapKeys(int *a, int *b) {
     int c = *a;
     *a = *b;
@@ -28,6 +32,7 @@ int isEmptyHeap(HEAP H) {
     return (H.length == 0);
 }
 
+// helper function to maintain heap properties.
 HEAP minHeapify(HEAP myHeap, int index) {
     int left = getLeftChild(index);
     int right = getRightChild(index);

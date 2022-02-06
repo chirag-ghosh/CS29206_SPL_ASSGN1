@@ -3,15 +3,20 @@ INCLUDEDIR = /usr/include
 CFLAGS = -g -I.
 OBJFILES = graph.o
 LIBNAME = libgraph.a
+RM = rm -f
+
 library: graph.o
 	ar rcs $(LIBNAME) graph.o
+
 graph.o: graph.h
 	gcc -c -I. -g graph.c -lchirag
+
 install: library
 	cp $(LIBNAME) $(LIBDIR)
 	cp graph.h $(INCLUDEDIR)
-RM = rm -f
+
 clean:
 	-$(RM) $(OBJFILES)
+	
 distclean:
 	-$(RM) $(OBJFILES) $(LIBNAME)
